@@ -1,11 +1,20 @@
 {
   "name": "tagebuch",
   "scripts": {
-    "build": "tsc",
+    "build": "webpack --mode production",
+    "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
     "deploy": "firebase deploy --only hosting"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.46",
+    "@babel/preset-env": "^7.0.0-beta.46",
+    "@babel/preset-typescript": "^7.0.0-beta.46",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^7.1.4",
     "firebase": "^4.13.1",
-    "typescript": "^2.8.3"
+    "ts-loader": "^4.2.0",
+    "typescript": "^2.8.3",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
   }
 }
