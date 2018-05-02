@@ -1,0 +1,11 @@
+{
+  "name": "tagebuch",
+  "scripts": {
+    "build": "tsc",
+    "deploy": "firebase deploy --only hosting"
+  },
+  "devDependencies": {
+    "firebase": "^4.13.1",
+    "typescript": "^2.8.3"
+  }
+}
