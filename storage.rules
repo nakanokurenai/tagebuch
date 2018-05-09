@@ -1,7 +1,7 @@
 service firebase.storage {
   match /b/{bucket}/o {
     function isUserPriviledgedUser() {
-      return request.auth.uid in get(/databases/$(database)/documents/priviledged_users).data
+      return request.auth.uid in get(/databases/$(database)/documents/system/priviledged_users).data
     }
 
     allow read, write: if false;
