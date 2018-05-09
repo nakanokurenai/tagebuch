@@ -1,13 +1,11 @@
 service firebase.storage {
   match /b/{bucket}/o {
     function isUserPriviledgedUser() {
-      return request.auth.uid in get(/databases/$(database)/documents/system/priviledged_users).data
+      return request.auth.uid in ['iU4fD0Tw7RPXuBNWp7u61Mqz2cm1']
     }
 
-    allow read, write: if false;
-    match /attachments/{userId}/{allPaths=**} {
-      allow read;
-      allow write: if isUserPriviledgedUser() && request.auth.uid == userId; 
+    match /attachments/{uid}/{allPaths=**} {
+      allow read,write: if request.auth.uid == uid && isUserPriviledgedUser();
     }
   }
 }

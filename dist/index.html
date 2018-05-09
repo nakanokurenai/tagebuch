@@ -64,7 +64,7 @@
                 JSON.parse(localStorage.getItem('credential')) : 
                 (await firebase.auth().signInWithPopup(provider)).credential
             if (!wasAuthed) {
-              window.localStorage.setItem('credential', JSON.stringify(credential))
+              window.localStorage.setItem('credential', JSON.stringify(authCredential))
               await firebase.auth().signInWithCredential(
                 firebase.auth.GithubAuthProvider.credential(authCredential.accessToken)
               )
@@ -78,15 +78,10 @@
               resolve(evt.target.files[0])
             })
           }))()
-          const dataURL = await ((item) => new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(item)
-            reader.addEventListener('load', () => {
-              resolve(reader.result)
-            })
-            reader.addEventListener('error', reject)
-          }))(item)
-          console.dir(dataURL)
+          const { uid } = firebase.auth().currentUser
+          const storage = firebase.storage()
+          const snapshot = await storage.ref().child(`attachments/${uid}/${item.name}`).put(item)
+          console.dir(snapshot)
         } catch (e) {
           console.error(e)
         }
