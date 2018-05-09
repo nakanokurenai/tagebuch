@@ -3,7 +3,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
-    "deploy": "firebase deploy --only hosting"
+    "deploy": "firebase deploy"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
@@ -11,7 +11,8 @@
     "@babel/preset-typescript": "^7.0.0-beta.46",
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^7.1.4",
-    "firebase": "^4.13.1",
+    "firebase": "^5.0.1",
+    "firebase-tools": "^3.18.4",
     "ts-loader": "^4.2.0",
     "typescript": "^2.8.3",
     "webpack": "^4.6.0",
