@@ -80,7 +80,12 @@
           }))()
           const { uid } = firebase.auth().currentUser
           const storage = firebase.storage()
-          const snapshot = await storage.ref().child(`attachments/${uid}/${item.name}`).put(item)
+          const metadata = {
+            customMetadata: {
+              owner: uid
+            }
+          }
+          const snapshot = await storage.ref().child(`attachments/${item.name}`).put(item, metadata)
           console.dir(snapshot)
         } catch (e) {
           console.error(e)

@@ -4,8 +4,9 @@ service firebase.storage {
       return request.auth.uid in ['iU4fD0Tw7RPXuBNWp7u61Mqz2cm1']
     }
 
-    match /attachments/{uid}/{allPaths=**} {
-      allow read,write: if request.auth.uid == uid && isUserPriviledgedUser();
+    match /attachments/{allPaths=**} {
+      allow read;
+      allow write: if request.auth.uid == request.resource.metadata['owner'] && isUserPriviledgedUser();
     }
   }
 }
