@@ -30,7 +30,7 @@
     </style>
   </head>
   <body>
-    <input id=file type=file></p>
+    <input id=file type=file></file>
     <script>
       const config = {
         apiKey: "AIzaSyAdDDsaGAElmWdmCY_TwfuGqH_Lf2mggMI",
@@ -73,12 +73,20 @@
           })()
           // file upload test
           const file = document.getElementById('file')
-          const firstSelectedFileList = () => new Promise((resolve) => {
+          const item = await (() => new Promise((resolve) => {
             file.addEventListener('change', (evt) => {
-              resolve(evt.target.files)
+              resolve(evt.target.files[0])
             })
-          })
-          console.dir(firstSelectedFileList[0])
+          }))()
+          const dataURL = await ((item) => new Promise((resolve, reject) => {
+            const reader = new FileReader()
+            reader.readAsDataURL(item)
+            reader.addEventListener('load', () => {
+              resolve(reader.result)
+            })
+            reader.addEventListener('error', reject)
+          }))(item)
+          console.dir(dataURL)
         } catch (e) {
           console.error(e)
         }
