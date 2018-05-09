@@ -30,7 +30,8 @@
     </style>
   </head>
   <body>
-   <script>
+    <input id=file type=file></p>
+    <script>
       const config = {
         apiKey: "AIzaSyAdDDsaGAElmWdmCY_TwfuGqH_Lf2mggMI",
         authDomain: "blog.yukarium.net",
@@ -39,7 +40,7 @@
         storageBucket: "tagebuch-d1d21.appspot.com",
         messagingSenderId: "456221888713"
       }
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', async () => {
         // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
         // // The Firebase SDK is initialized and available here!
         //
@@ -55,18 +56,29 @@
           provider.setCustomParameters({
             'allow_signup': 'false'
           })
-          let credential = JSON.parse(localStorage.getItem('credential')) || null
-          console.dir(credential)
-          if (!(credential !== null && credential.accessToken)) {
-            firebase.auth().signInWithPopup(provider).then((r) => {
-              console.dir(r)
-              window.localStorage.setItem('credential', JSON.stringify(r.credential))
-              credential = r.credential
-            }).catch(console.error)
-          } else {
-            const cred = firebase.auth.GithubAuthProvider.credential(credential.accessToken)
-            firebase.auth().signInWithCredential(cred).then(console.dir).catch(console.error)
-          }
+          // authentication with GitHub
+          await (async () => {
+            const wasAuthed = localStorage.getItem('credential') !== null
+            const authCredential =
+              wasAuthed ?
+                JSON.parse(localStorage.getItem('credential')) : 
+                (await firebase.auth().signInWithPopup(provider)).credential
+            if (!wasAuthed) {
+              window.localStorage.setItem('credential', JSON.stringify(credential))
+              await firebase.auth().signInWithCredential(
+                firebase.auth.GithubAuthProvider.credential(authCredential.accessToken)
+              )
+            }
+            return authCredential
+          })()
+          // file upload test
+          const file = document.getElementById('file')
+          const firstSelectedFileList = () => new Promise((resolve) => {
+            file.addEventListener('change', (evt) => {
+              resolve(evt.target.files)
+            })
+          })
+          console.dir(firstSelectedFileList[0])
         } catch (e) {
           console.error(e)
         }
