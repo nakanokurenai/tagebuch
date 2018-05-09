@@ -1,20 +1,20 @@
 service cloud.firestore {
   match /databases/{database}/documents {
     function isUserPriviledgedUser() {
-      return request.auth.uid in get(/databases/$(database)/documents/priviledged_users).data
+      return request.auth.uid in get(/databases/$(database)/documents/system/priviledged_users).data
     }
 
-    match /priviledged_users {
-      allow read, write; if false;
+    match /system/{anyone=**} {
+      allow read, write: if false;
     }
 
     match /articles {
       allow read;
-      allow write; if isUserPriviledgedUser()
+      allow write: if isUserPriviledgedUser()
     }
 
     match /{anyone=**} {
-      allow read write; if false;
+      allow read, write: if false;
     }
   }
 }

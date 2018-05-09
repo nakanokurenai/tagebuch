@@ -1,7 +1,13 @@
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if request.auth!=null;
+    function isUserPriviledgedUser() {
+      return request.auth.uid in get(/databases/$(database)/documents/priviledged_users).data
+    }
+
+    allow read, write: if false;
+    match /attachments/{userId}/{allPaths=**} {
+      allow read;
+      allow write: if isUserPriviledgedUser() && request.auth.uid == userId; 
     }
   }
 }
