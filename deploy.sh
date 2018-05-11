@@ -9,5 +9,7 @@ loadenv () {
 
 loadenv $PWD/.env
 
-./templates/firestore.rules.sh > firestore.rules
-./templates/storage.rules.sh > storage.rules
+./templates/firestore.rules.sh > $PWD/firestore.rules
+./templates/storage.rules.sh > $PWD/storage.rules
+
+firebase deploy --project $PROJECT_ID "$@"
