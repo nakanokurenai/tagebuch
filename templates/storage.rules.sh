@@ -1,7 +1,10 @@
+#!/bin/bash
+
+cat <<EOC
 service firebase.storage {
   match /b/{bucket}/o {
     function isUserPriviledgedUser() {
-      return request.auth.uid in ['iU4fD0Tw7RPXuBNWp7u61Mqz2cm1']
+      return request.auth.uid in ['$OWNER_UID']
     }
 
     match /attachments/{allPaths=**} {
@@ -10,3 +13,4 @@ service firebase.storage {
     }
   }
 }
+EOC

@@ -1,11 +1,15 @@
+#!/bin/sh
+
+cat <<EOC
 service cloud.firestore {
   match /databases/{database}/documents {
     function isUserPriviledgedUser() {
-      return request.auth.uid in get(/databases/$(database)/documents/system/priviledged_users).data
+      return request.auth.uid in ['$OWNER_UID']
     }
 
     match /system/{anyone=**} {
-      allow read, write: if false;
+      allow read: if isUserPriviledgedUser();
+      allow write: if false;
     }
 
     match /articles {
@@ -18,3 +22,4 @@ service cloud.firestore {
     }
   }
 }
+EOC

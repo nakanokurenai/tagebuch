@@ -3,7 +3,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
-    "deploy": "firebase deploy"
+    "deploy": "source .env && firebase deploy --project $PROJECT_ID"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
