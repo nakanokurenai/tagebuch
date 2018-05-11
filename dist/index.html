@@ -14,13 +14,14 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-    <script defer src="/dist.js"></script>
+    <script defer src="/bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="/bundle.css" />
   </head>
   <body>
+    <div id=root></div>
     <input id=file type=file></file>
     <script>
       document.addEventListener('DOMContentLoaded', async () => {
-
         try {
           const provider = new firebase.auth.GithubAuthProvider()
           provider.setCustomParameters({
@@ -33,7 +34,7 @@
               wasAuthed ?
                 JSON.parse(localStorage.getItem('credential')) : 
                 (await firebase.auth().signInWithPopup(provider)).credential
-            if (!wasAuthed) {
+            if (wasAuthed) {
               window.localStorage.setItem('credential', JSON.stringify(authCredential))
               await firebase.auth().signInWithCredential(
                 firebase.auth.GithubAuthProvider.credential(authCredential.accessToken)
@@ -42,21 +43,20 @@
             return authCredential
           })()
           // file upload test
-          const file = document.getElementById('file')
-          const item = await (() => new Promise((resolve) => {
-            file.addEventListener('change', (evt) => {
-              resolve(evt.target.files[0])
-            })
-          }))()
           const { uid } = firebase.auth().currentUser
-          const storage = firebase.storage()
-          const metadata = {
-            customMetadata: {
-              owner: uid
-            }
-          }
-          const snapshot = await storage.ref().child(`attachments/${item.name}`).put(item, metadata)
-          console.dir(snapshot)
+          document.getElementById('file').addEventListener('change', async (evt) => {
+            const item =  evt.target.files[0]
+            const snapshot = await firebase
+              .storage().ref(`attachments/${item.name}`)
+              .put(item, {
+                customMetadata: {
+                  owner: uid
+                }
+              })
+              const url = await firebase.storage().ref(`attachments/${item.name}`).getDownloadURL()
+              console.dir(snapshot)
+              console.log(url)
+          })
         } catch (e) {
           console.error(e)
         }
