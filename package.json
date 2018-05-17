@@ -1,9 +1,10 @@
 {
   "name": "tagebuch",
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack",
+    "build:prod": "webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
-    "deploy": "./deploy.sh"
+    "deploy": "npm run --silent build:prod && ./deploy.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
