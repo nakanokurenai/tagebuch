@@ -1,13 +1,13 @@
 <template>
   <div>
-    <li>
-      <ul v-for="post in posts" :key="post.id">
+    <ol>
+      <li v-for="post in posts" :key="post.id">
         <section>
           <h1>{{post.title}}</h1>
           <p>{{post.body}}</p>
         </section>
-      </ul>
-    </li>
+      </li>
+    </ol>
   </div>
 </template>
 
@@ -31,6 +31,9 @@ export default {
 </script>
 
 <style scoped>
+li {
+  list-style-type: none;
+}
 p {
   color: red;
 }
