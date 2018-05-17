@@ -2,16 +2,15 @@
   <div>
     <ol>
       <li v-for="post in posts" :key="post.id">
-        <section>
-          <h1>{{post.title}}</h1>
-          <p>{{post.body}}</p>
-        </section>
+        <post :post="post"></post>
       </li>
     </ol>
   </div>
 </template>
 
 <script>
+import Post from './Post.vue'
+
 export default {
   data: () => ({
     posts: [
@@ -26,11 +25,17 @@ export default {
         body: 'huga'
       }
     ]
-  })
+  }),
+  components: {
+    Post
+  }
 }
 </script>
 
 <style scoped>
+ol {
+  padding: 0;
+}
 li {
   list-style-type: none;
 }
