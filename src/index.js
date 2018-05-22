@@ -13,7 +13,6 @@ import VueAsyncComputed from 'vue-async-computed'
 import VueFire from 'vuefire'
 
 import App from '~/App.vue'
-import 'bulma/css/bulma.css'
 
 import Index from '~/views/Index.vue'
 import NotFoundComponent from '~/views/NotFoundComponent.vue'
