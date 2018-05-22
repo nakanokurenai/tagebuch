@@ -20,7 +20,10 @@ module.exports = (_, argv) => ({
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    alias: {
+      '~': path.resolve(__dirname, 'src/')
+    }
   },
   devtool: argv.mode !== 'production' ? 'inline-source-map' : false,
   module: {
