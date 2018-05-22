@@ -5,7 +5,9 @@
     "build:prod": "npm run --silent clean && ./build.sh --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
     "deploy": "npm run --silent build && ./deploy.sh",
-    "deploy:prod": "npm run --silent build:prod && ./deploy.sh"
+    "deploy:prod": "npm run --silent build:prod && ./deploy.sh",
+    "lint": "standard --plugin html 'src/*.{js,vue}'",
+    "fmt": "npm run --silent lint -- --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
@@ -14,8 +16,10 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^8.0.0-beta",
     "css-loader": "^0.28.11",
+    "eslint-plugin-html": "^4.0.3",
     "firebase-tools": "^3.18.4",
     "mini-css-extract-plugin": "^0.4.0",
+    "standard": "^11.0.1",
     "ts-loader": "^4.3.0",
     "typescript": "^2.8.3",
     "vue-loader": "^15.0.10",

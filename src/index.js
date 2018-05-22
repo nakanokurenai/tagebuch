@@ -19,15 +19,17 @@ Raven
 
 async function index () {
   const {data: firebaseAppConfig} = await axios.get('/__/firebase/init.json')
-  const app = firebase.initializeApp(firebaseAppConfig)
+  firebase.initializeApp(firebaseAppConfig)
 
   Vue.use(VueFire)
   Vue.use(AsyncComputed)
 
+  /* eslint-disable no-new */
   new Vue({
     el: document.getElementById('root'),
     render: h => h(App)
   })
+  /* eslint-enable no-new */
 }
 
 index().catch(Raven.captureException.bind(Raven))

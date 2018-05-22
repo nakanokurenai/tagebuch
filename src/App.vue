@@ -11,42 +11,45 @@
 </template>
 
 <script>
-import firebase from "@firebase/app";
+import firebase from '@firebase/app'
 import Raven from 'raven-js'
 
-import Post from "./Post.vue";
+import Post from './Post.vue'
 
 export default {
   data: () => ({
     posts: [
       {
         id: 1,
-        title: "ほげ",
-        body: "ふが"
+        title: 'ほげ',
+        body: 'ふが'
       },
       {
         id: 2,
-        title: "hoge",
-        body: "huga"
+        title: 'hoge',
+        body: 'huga'
       }
     ],
-    credential: localStorage.getItem("credential")
-      ? JSON.parse(localStorage.getItem("credential"))
-      : null
+    credential: window.localStorage.getItem('credential')
+      ? JSON.parse(window.localStorage.getItem('credential'))
+      : null,
+    user: null
   }),
   computed: {
-    currentUser: function() {
-      return this.credential !== null
-        ? JSON.stringify(this.credential)
-        : "not logged in";
+    currentUser: function () {
+      return this.user !== null
+        ? this.user.displayName || this.user.email || this.user.uid
+        : 'not logged in'
     }
   },
   beforeMount: async function () {
     firebase.auth().onAuthStateChanged(user => {
       if (!user) {
         Raven.setUserContext({})
+        this.user = null
         return
       }
+      this.user = user
       Raven.setUserContext({
         email: user.email,
         uid: user.uid
@@ -61,11 +64,11 @@ export default {
             firebase.auth.GithubAuthProvider.credential(
               this.credential.accessToken
             )
-          );
+          )
       } catch (e) {
         Raven.captureException(e)
-        localStorage.removeItem("credential");
-        return null;
+        window.localStorage.removeItem('credential')
+        return null
       }
     }
   },
@@ -80,13 +83,13 @@ export default {
       })
       firebase.auth().signInWithPopup(provider)
         .then(res => {
-          localStorage.setItem("credential", JSON.stringify(res.credential));
-          this.credential = res.credential;
+          window.localStorage.setItem('credential', JSON.stringify(res.credential))
+          this.credential = res.credential
         })
         .catch(Raven.captureException.bind(Raven))
     }
   }
-};
+}
 </script>
 
 <style scoped>
