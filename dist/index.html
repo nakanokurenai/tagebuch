@@ -3,64 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Testing</title>
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/4.13.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.13.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-firestore.js"></script>
-    <script defer src="/__/firebase/4.13.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <script defer src="/bundle.js"></script>
+    <script defer type="text/javascript" src="/polyfill.js"></script>
+    <script defer type="text/javascript" src="/bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="/bundle.css" />
   </head>
   <body>
     <div id=root></div>
-    <input id=file type=file></file>
-    <script>
-      document.addEventListener('DOMContentLoaded', async () => {
-        try {
-          const provider = new firebase.auth.GithubAuthProvider()
-          provider.setCustomParameters({
-            'allow_signup': 'false'
-          })
-          // authentication with GitHub
-          await (async () => {
-            const wasAuthed = localStorage.getItem('credential') !== null
-            const authCredential =
-              wasAuthed ?
-                JSON.parse(localStorage.getItem('credential')) : 
-                (await firebase.auth().signInWithPopup(provider)).credential
-            if (wasAuthed) {
-              window.localStorage.setItem('credential', JSON.stringify(authCredential))
-              await firebase.auth().signInWithCredential(
-                firebase.auth.GithubAuthProvider.credential(authCredential.accessToken)
-              )
-            }
-            return authCredential
-          })()
-          // file upload test
-          const { uid } = firebase.auth().currentUser
-          document.getElementById('file').addEventListener('change', async (evt) => {
-            const item =  evt.target.files[0]
-            const snapshot = await firebase
-              .storage().ref(`attachments/${item.name}`)
-              .put(item, {
-                customMetadata: {
-                  owner: uid
-                }
-              })
-              const url = await firebase.storage().ref(`attachments/${item.name}`).getDownloadURL()
-              console.dir(snapshot)
-              console.log(url)
-          })
-        } catch (e) {
-          console.error(e)
-        }
-      })
-    </script>
   </body>
 </html>

@@ -12,7 +12,7 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /articles {
+    match /articles/{anyone=**} {
       allow read;
       allow write: if isUserPriviledgedUser()
     }
