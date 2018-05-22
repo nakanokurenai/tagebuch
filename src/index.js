@@ -1,22 +1,22 @@
+import Raven from 'raven-js'
+import RavenVuePlugin from 'raven-js/plugins/vue'
+
+import axios from 'axios'
 import firebase from '@firebase/app'
 import '@firebase/auth'
 import '@firebase/firestore'
 import '@firebase/storage'
-import axios from 'axios'
-
-import Raven from 'raven-js'
-import RavenVuePlugin from 'raven-js/plugins/vue'
 
 import Vue from 'vue'
-import VueFire from 'vuefire'
-import AsyncComputed from 'vue-async-computed'
 import VueRouter from 'vue-router'
+import VueAsyncComputed from 'vue-async-computed'
+import VueFire from 'vuefire'
 
 import App from '~/App.vue'
+import 'bulma/css/bulma.css'
+
 import Index from '~/views/Index.vue'
 import NotFoundComponent from '~/views/NotFoundComponent.vue'
-
-import 'bulma/css/bulma.css'
 
 Raven
   .config(process.env.SENTRY_DSN)
@@ -28,7 +28,7 @@ async function index () {
   firebase.initializeApp(firebaseAppConfig)
 
   Vue.use(VueFire)
-  Vue.use(AsyncComputed)
+  Vue.use(VueAsyncComputed)
   Vue.use(VueRouter)
 
   const router = new VueRouter({
