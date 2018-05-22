@@ -15,6 +15,7 @@ import VueFire from 'vuefire'
 import App from '~/App.vue'
 
 import Index from '~/views/Index.vue'
+import Editor from '~/views/Editor.vue'
 import NotFoundComponent from '~/views/NotFoundComponent.vue'
 
 Raven
@@ -37,6 +38,10 @@ async function index () {
       {
         path: '/',
         component: Index
+      },
+      {
+        path: '/editor',
+        component: Editor
       },
       {
         path: '/posts/:id',
