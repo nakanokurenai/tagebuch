@@ -54,7 +54,7 @@ async function index () {
   new Vue({
     el: document.getElementById('root'),
     render: h => h(App),
-    router,
+    router
   })
   /* eslint-enable no-new */
 }
