@@ -34,6 +34,7 @@
     "@firebase/storage": "^0.2.2",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "bulma": "^0.7.1",
     "raven-js": "^3.25.2",
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",

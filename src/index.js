@@ -12,6 +12,8 @@ import VueFire from 'vuefire'
 import AsyncComputed from 'vue-async-computed'
 import App from './App.vue'
 
+import 'bulma/css/bulma.css'
+
 Raven
   .config(process.env.SENTRY_DSN)
   .addPlugin(RavenVuePlugin, Vue)

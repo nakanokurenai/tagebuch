@@ -32,10 +32,8 @@ module.exports = (_, argv) => ({
       {
         test: /\.css$/,
         use: [
-          argv.mode === 'production'
-            ? MiniCSSExtractPlugin.loader
-            : 'vue-style-loader',
-          'css-loader'
+          MiniCSSExtractPlugin.loader,
+          argv.mode === 'production' ? 'css-loader?minimize' : 'css-loader'
         ]
       },
       {
