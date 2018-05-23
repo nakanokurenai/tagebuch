@@ -14,13 +14,16 @@ import VueFire from 'vuefire'
 
 import App from '~/App.vue'
 
-import Index from '~/views/Index.vue'
-import Editor from '~/views/Editor.vue'
-import NotFoundComponent from '~/views/NotFoundComponent.vue'
+const Index = () => import('~/views/Index.vue')
+const Editor = () => import('~/views/Editor.vue') 
+const NotFoundComponent = () => import('~/views/NotFoundComponent.vue')
 
 Raven
   .config(process.env.SENTRY_DSN)
   .addPlugin(RavenVuePlugin, Vue)
+  .setTagsContext({
+    environment: process.env.NODE_ENV
+  })
   .install()
 
 async function index () {

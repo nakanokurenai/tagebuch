@@ -68,5 +68,14 @@ module.exports = (_, argv) => ({
     // plugins that enabled on production mode
     // specify to use on develop or none mode
     new webpack.NoEmitOnErrorsPlugin()
-  ]
+  ],
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    proxy: {
+      "/__/firebase": {
+        target: `https://${process.env.PROJECT_ID}.firebaseapp.com`,
+        changeOrigin: true
+      }
+    }
+  }
 })

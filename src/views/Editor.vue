@@ -116,3 +116,13 @@ export default {
   }
 }
 </script>
+
+<style>
+template {
+  display: flex;
+  width: 80%;
+}
+textarea {
+  width: 80%;
+}
+</style>

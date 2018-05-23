@@ -7,7 +7,8 @@
     "deploy": "npm run --silent build && ./deploy.sh",
     "deploy:prod": "npm run --silent build:prod && ./deploy.sh",
     "lint": "standard --plugin html 'src/*.{js,vue}'",
-    "fmt": "npm run --silent lint -- --fix"
+    "fmt": "npm run --silent lint -- --fix",
+    "dev": "npm run --silent clean && env `cat .env` webpack-dev-server --mode development"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
@@ -40,6 +41,7 @@
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
     "vue-router": "^3.0.1",
-    "vuefire": "^2.0.0-alpha.11"
+    "vuefire": "^2.0.0-alpha.11",
+    "webpack-dev-server": "^3.1.4"
   }
 }
