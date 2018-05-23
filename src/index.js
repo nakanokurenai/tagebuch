@@ -16,6 +16,7 @@ import App from '~/App.vue'
 
 const Index = () => import('~/views/Index.vue')
 const Editor = () => import('~/views/Editor.vue')
+const Post = () => import('~/views/Post.vue')
 import NotFoundComponent from '~/views/NotFoundComponent.vue'
 
 Raven
@@ -48,7 +49,7 @@ async function index () {
       },
       {
         path: '/posts/:id',
-        component: Index
+        component: Post
       },
       {
         path: '/*',

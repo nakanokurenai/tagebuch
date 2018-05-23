@@ -76,6 +76,7 @@ module.exports = (_, argv) => ({
         target: `https://${process.env.PROJECT_ID}.firebaseapp.com`,
         changeOrigin: true
       }
-    }
+    },
+    historyApiFallback: true
   }
 })
