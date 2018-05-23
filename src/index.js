@@ -15,8 +15,8 @@ import VueFire from 'vuefire'
 import App from '~/App.vue'
 
 const Index = () => import('~/views/Index.vue')
-const Editor = () => import('~/views/Editor.vue') 
-const NotFoundComponent = () => import('~/views/NotFoundComponent.vue')
+const Editor = () => import('~/views/Editor.vue')
+import NotFoundComponent from '~/views/NotFoundComponent.vue'
 
 Raven
   .config(process.env.SENTRY_DSN)
