@@ -10,3 +10,9 @@
     props: ['post']
   }
 </script>
+
+<style scoped>
+p {
+  white-space: pre;
+}
+</style>

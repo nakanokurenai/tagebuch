@@ -8,11 +8,13 @@
     <p v-if="currentUser">Signed in as {{currentUser}}</p>
 
     <form v-if="isPreviledgedUser">
-      <textarea v-model="text"></textarea>
+      <input type=text v-model="title" placeholder="title">
+      <textarea v-model="summary" placeholder="summary"></textarea>
+      <textarea v-model="body" placeholder="body"></textarea>
       <input type=button @click="publish($event)" value="Publish it!">
     </form>
     <p v-else>
-      You must be a previledged user.
+      You must be a previledged user if you want to edit.
       <input type=button @click="signin()" value="Sign in">
     </p>
   </span>
@@ -22,6 +24,7 @@
 import firebase from '@firebase/app'
 import { articlesCollection, systemCollection } from '~/firebase'
 import Raven from 'raven-js'
+import uuidv4 from 'uuid/v4'
 
 import NotFoundComponent from '~/views/NotFoundComponent.vue'
 
@@ -29,7 +32,9 @@ export default {
   data: () => ({
     isPreviledgedUser: false,
     onInitializing: true,
-    text: '',
+    title: '',
+    summary: '',
+    body: '',
     user: null
   }),
   computed: {
@@ -52,7 +57,7 @@ export default {
       this.user = user
 
       try {
-        await firebase.firestore().collection('system').limit(1).get()
+        await systemCollection().limit(1).get()
         this.isPreviledgedUser = true
       } catch (e) {
         console.error(e)
@@ -86,7 +91,16 @@ export default {
   methods: {
     publish: async function (event) {
       if (event) event.preventDefault()
-      console.log(this.text)
+      await articlesCollection()
+        .doc(uuidv4())
+        .set({
+          title: this.title,
+          body: this.body,
+          summary: this.summary,
+          created_at: new Date(),
+          updated_at: new Date()
+        })
+      this.title = this.body = this.summary = ''
     },
     signin: async function () {
       const provider = new firebase.auth.GithubAuthProvider()

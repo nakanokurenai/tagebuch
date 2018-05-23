@@ -5,8 +5,7 @@
   </span>
   <span v-else>
     <h1>Das Tagebuch</h1>
-    <h2 v-if="posts.length === 0">There are no posts.</h2>
-    <ol v-else>
+    <ol v-if="posts.length > 0">
       <li v-for="post in posts" :key="post.id">
         <post-preview :post="post"></post-preview>
       </li>
@@ -17,15 +16,17 @@
 <script>
 import firebase from '@firebase/app'
 import Raven from 'raven-js'
+import { articlesCollection } from '~/firebase'
 
 import PostPreview from '~/components/PostPreview.vue'
 
 export default {
   data: () => ({
     posts: [],
-    onInitializing: true
+    onInitializing: false
   }),
-  async beforeMount () {
+  async beforeMount() {
+    await this.$bind('posts', articlesCollection().orderBy('updated_at', 'desc'))
     this.onInitializing = false
   },
   components: {
