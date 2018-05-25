@@ -17,7 +17,7 @@ import App from '~/App.vue'
 const Index = () => import('~/views/Index.vue')
 const Editor = () => import('~/views/Editor.vue')
 const Post = () => import('~/views/Post.vue')
-import NotFoundComponent from '~/views/NotFoundComponent.vue'
+import NotFound from '~/views/NotFound.vue'
 
 Raven
   .config(process.env.SENTRY_DSN)
@@ -53,7 +53,7 @@ async function index () {
       },
       {
         path: '/*',
-        component: NotFoundComponent
+        component: NotFound
       }
     ]
   })

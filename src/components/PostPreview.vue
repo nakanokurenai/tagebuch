@@ -5,7 +5,7 @@
         {{post.title}}
       </router-link>
     </h1>
-    <p>{{post.summary || post.body.substr(0, 100)}}</p>
+    <p>{{post.summary || post.body.split('/n')[0].substr(0, 100)}}</p>
   </section>
 </template>
 

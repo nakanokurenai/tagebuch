@@ -1,7 +1,8 @@
 <template>
-  <span v-if="!post">
+  <span v-if="!post && !isThereNoPost">
     <p>Loading...</p>
   </span>
+  <not-found v-else-if="isThereNoPost"></not-found>
   <post v-else :post="post"></post>
 </template>
 
@@ -10,6 +11,7 @@ import Raven from 'raven-js'
 import { articlesCollection } from '~/firebase'
 
 import Post from '~/components/Post.vue'
+import NotFound from '~/views/NotFound.vue'
 
 export default {
   data: () => ({
@@ -31,7 +33,8 @@ export default {
     }
   },
   components: {
-    Post
+    Post,
+    NotFound
   }
 }
 </script>
