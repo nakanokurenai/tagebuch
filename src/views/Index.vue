@@ -3,13 +3,17 @@
     <h1>Das Tagebuch</h1>
     <p>Loading...</p>
   </span>
-  <span v-else>
-    <h1>Das Tagebuch</h1>
-    <ol v-if="posts.length > 0">
-      <li v-for="post in posts" :key="post.id">
-        <post-preview :post="post"></post-preview>
-      </li>
-    </ol>
+  <span id=index v-else>
+    <div id=sidebar>
+      <h1>Das Tagebuch</h1>
+    </div>
+    <div id=list>
+      <ol v-if="posts.length > 0">
+        <li v-for="post in posts" :key="post.id">
+          <post-preview :post="post"></post-preview>
+        </li>
+      </ol>
+    </div>
   </span>
 </template>
 
@@ -36,6 +40,16 @@ export default {
 </script>
 
 <style scoped>
+* {
+  box-sizing: border-box;
+}
+#index {
+  display: flex;
+}
+#sidebar {
+  max-width: 165px;
+}
+
 ol {
   padding: 0;
 }
