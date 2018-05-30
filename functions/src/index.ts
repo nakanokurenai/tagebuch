@@ -32,3 +32,7 @@ export const article = functions.https.onRequest(async (req,res) => {
     article: articleDocument.data()
   })
 })
+
+export const ENOENT = functions.https.onRequest((req, res) => {
+  return res.status(404).send('ENOENT')
+})

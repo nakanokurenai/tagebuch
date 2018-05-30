@@ -23,6 +23,14 @@
         "function": "article"
       },
       {
+        "source": "/api/*",
+        "function": "ENOENT"
+      },
+      {
+        "source": "/api",
+        "function": "ENOENT"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
