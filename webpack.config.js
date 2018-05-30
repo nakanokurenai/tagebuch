@@ -79,6 +79,10 @@ module.exports = (_, argv) => ({
       "/__/firebase": {
         target: `https://${process.env.PROJECT_ID}.firebaseapp.com`,
         changeOrigin: true
+      },
+      "/api": {
+        target: `https://${process.env.PROJECT_ID}.firebaseapp.com`,
+        changeOrigin: true
       }
     },
     historyApiFallback: true

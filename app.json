@@ -1,16 +1,12 @@
 {
   "name": "tagebuch",
-  "scripts": {
-    "postdeploy": ".heroku/setup"
-  },
+  "scripts": {},
   "env": {
+    "DOTENV": {
+      "required": true
+    }
   },
-  "formation": {
-  },
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ]
+  "formation": {},
+  "addons": [],
+  "buildpacks": []
 }

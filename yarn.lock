@@ -3145,6 +3145,10 @@ dot-prop@^4.1.0, dot-prop@^4.1.1:
   dependencies:
     is-obj "^1.0.0"
 
+dotenv@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-5.0.1.tgz#a5317459bd3d79ab88cff6e44057a6a3fbb1fcef"
+
 duplexer2@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.1.4.tgz#8b12dab878c0d69e3e7891051662a32fc6bddcc1"
@@ -3582,7 +3586,7 @@ express@4.16.2:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-express@^4.16.2:
+express@^4.16.2, express@^4.16.3:
   version "4.16.3"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
   dependencies:
@@ -8740,9 +8744,9 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.0.tgz#97976142405d13d8efae154749e88c4e358cf926"
 
-vue-loader@^15.0.10:
-  version "15.1.0"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.1.0.tgz#82a2a5c310951aba17ad5d8680fe016c77d37e80"
+vue-loader@^15.2.2:
+  version "15.2.2"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-15.2.2.tgz#d845fef2eca64e91042e66315119536e17f1538d"
   dependencies:
     "@vue/component-compiler-utils" "^1.2.1"
     hash-sum "^1.0.2"

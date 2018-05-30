@@ -1,6 +1,7 @@
 {
   "name": "tagebuch",
   "scripts": {
+    "start": "node static.js",
     "build": "npm run --silent clean && env `cat .env` webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
     "deploy": "npm run --silent build && ./deploy.sh",
@@ -8,7 +9,7 @@
     "fmt": "npm run --silent lint -- --fix",
     "dev": "npm run --silent clean && env `cat .env` webpack-dev-server --mode development",
     "setup": "rm -rf node_modules functions/node_modules && yarn && yarn --cwd functions",
-    "lock": "npm shrinkwrap && npm --prefix functions shrinkwrap"
+    "heroku-postbuild": ".heroku/setup.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
@@ -26,12 +27,9 @@
     "eslint-plugin-standard": "^3.1.0",
     "eslint-plugin-vue": "^4.5.0",
     "firebase-tools": "^3.18.4",
-    "mini-css-extract-plugin": "^0.4.0",
     "ts-loader": "^4.3.0",
     "typescript": "^2.8.3",
-    "vue-loader": "^15.0.10",
     "vue-template-compiler": "^2.5.16",
-    "webpack": "^4.8.1",
     "webpack-cli": "^2.1.2"
   },
   "dependencies": {
@@ -43,14 +41,19 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "bulma": "^0.7.1",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
     "marked": "^0.4.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "monaco-editor": "^0.13.1",
     "raven-js": "^3.25.2",
     "uuid": "^3.2.1",
     "vue": "^2.5.16",
     "vue-async-computed": "^3.3.1",
+    "vue-loader": "^15.2.2",
     "vue-router": "^3.0.1",
     "vuefire": "^2.0.0-alpha.11",
+    "webpack": "^4.8.1",
     "webpack-dev-server": "^3.1.4"
   }
 }
