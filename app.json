@@ -1,7 +1,7 @@
 {
   "name": "tagebuch",
   "scripts": {
-    "postdeploy": ".heroku/setup"
+    "postdeploy": ".heroku/setup.sh"
   },
   "env": {
   },
