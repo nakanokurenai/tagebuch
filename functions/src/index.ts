@@ -14,7 +14,7 @@ export const articles = functions.https.onRequest(async (req, res) => {
       id: document.id
     }, document.data())
   ))
-  return res.send({
+  return res.set('Cache-Control', 'public, max-age=300, s-maxage=600').send({
     articles: articlesData,
     length: articlesData.length
   })
