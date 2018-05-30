@@ -9,14 +9,15 @@ jobs:
     steps:
       - restore_cache:
           keys:
-            - yarn
+            - yarn-{{ checksum "yarn.lock" }}
+            - yarn-
       - checkout
       - run: yarn config set cache-folder /tmp/yarn
       - run: yarn
       - run: yarn --cwd functions
       - run: yarn lint
       - save_cache:
-          key: yarn
+          key: yarn-{{ checksum "yarn.lock" }}
           paths:
             - /tmp/yarn
       - persist_to_workspace:
