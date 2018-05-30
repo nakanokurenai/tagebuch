@@ -12,18 +12,19 @@ import VueRouter from 'vue-router'
 import VueAsyncComputed from 'vue-async-computed'
 import VueFire from 'vuefire'
 
+import config from './config'
 import App from '~/App.vue'
 
+import NotFound from '~/views/NotFound.vue'
 const Index = () => import('~/views/Index.vue')
 const Editor = () => import('~/views/Editor.vue')
 const Post = () => import('~/views/Post.vue')
-import NotFound from '~/views/NotFound.vue'
 
 Raven
-  .config(process.env.SENTRY_DSN)
+  .config(config.SENTRY_DSN)
   .addPlugin(RavenVuePlugin, Vue)
   .setTagsContext({
-    environment: process.env.NODE_ENV
+    environment: config.ENV
   })
   .install()
 
