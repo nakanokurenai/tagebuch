@@ -16,7 +16,7 @@ jobs:
       - run: yarn --cwd functions
       - run: yarn lint
       - save_cache:
-          key: cache
+          key: yarn
           paths:
             - /tmp/yarn
       - persist_to_workspace:
