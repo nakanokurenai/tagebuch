@@ -15,6 +15,14 @@
     ],
     "rewrites": [
       {
+        "source": "/api/articles",
+        "function": "articles"
+      },
+      {
+        "source": "/api/articles/*",
+        "function": "article"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
