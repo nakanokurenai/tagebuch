@@ -1,8 +1,6 @@
 {
   "name": "tagebuch",
-  "scripts": {
-    "postdeploy": ".heroku/setup.sh"
-  },
+  "scripts": {},
   "env": {
     "DOTENV": {
       "required": true
