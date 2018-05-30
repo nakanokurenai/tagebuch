@@ -7,10 +7,18 @@ jobs:
     working_directory: ~/repo
 
     steps:
+      - restore_cache:
+          keys:
+            - yarn
       - checkout
+      - run: yarn config set cache-folder /tmp/yarn
       - run: yarn
       - run: yarn --cwd functions
       - run: yarn lint
+      - save_cache:
+          key: cache
+          paths:
+            - /tmp/yarn
       - persist_to_workspace:
           root: ~/
           paths:
