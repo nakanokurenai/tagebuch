@@ -3,14 +3,8 @@
   "scripts": {
     "postdeploy": ".heroku/setup.sh"
   },
-  "env": {
-  },
-  "formation": {
-  },
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ]
+  "env": {},
+  "formation": {},
+  "addons": [],
+  "buildpacks": []
 }
