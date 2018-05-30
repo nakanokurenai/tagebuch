@@ -9,7 +9,7 @@
     "fmt": "npm run --silent lint -- --fix",
     "dev": "npm run --silent clean && env `cat .env` webpack-dev-server --mode development",
     "setup": "rm -rf node_modules functions/node_modules && yarn && yarn --cwd functions",
-    "heroku-postbuild": ".heroku/setup.sh && npm run static"
+    "heroku-postbuild": ".heroku/setup.sh"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
