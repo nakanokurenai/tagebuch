@@ -31,7 +31,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: echo $DOTENV | base64 --decode > .env
-      - run: yarn deploy --token $FIREBASE_TOKEN
+      - run: npm run deploy --silent -- --token $FIREBASE_TOKEN
 
 workflows:
   version: 2
