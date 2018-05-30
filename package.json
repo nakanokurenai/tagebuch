@@ -1,6 +1,7 @@
 {
   "name": "tagebuch",
   "scripts": {
+    "start": "node static.js",
     "build": "npm run --silent clean && env `cat .env` webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
     "deploy": "npm run --silent build && ./deploy.sh",
@@ -8,8 +9,7 @@
     "fmt": "npm run --silent lint -- --fix",
     "dev": "npm run --silent clean && env `cat .env` webpack-dev-server --mode development",
     "setup": "rm -rf node_modules functions/node_modules && yarn && yarn --cwd functions",
-    "static": "node static.js",
-    "heroku": ".heroku/setup.sh && npm run static"
+    "heroku-postbuild": ".heroku/setup.sh && npm run static"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.46",
