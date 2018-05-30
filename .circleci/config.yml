@@ -30,8 +30,8 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - echo $DOTENV | base64 --decode > .env
-      - yarn deploy --token $FIREBASE_TOKEN
+      - run: echo $DOTENV | base64 --decode > .env
+      - run: yarn deploy --token $FIREBASE_TOKEN
 
 workflows:
   version: 2
