@@ -12,6 +12,8 @@ import VueRouter from 'vue-router'
 import VueAsyncComputed from 'vue-async-computed'
 import VueFire from 'vuefire'
 
+import '@ajusa/lit/dist/lit.css'
+
 import config from './config'
 import App from '~/App.vue'
 

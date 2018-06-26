@@ -1,12 +1,13 @@
 <template>
-  <span v-if="onInitializing">
+  <div class="init sk-wave" v-if="onInitializing">
+    <div class="sk-rect sk-rect1"></div>
+    <div class="sk-rect sk-rect2"></div>
+    <div class="sk-rect sk-rect3"></div>
+    <div class="sk-rect sk-rect4"></div>
+    <div class="sk-rect sk-rect5"></div>
+  </div>
+  <div class="c" v-else>
     <h1>Das Tagebuch</h1>
-    <p>Loading...</p>
-  </span>
-  <span id=index v-else>
-    <div id=sidebar>
-      <h1>Das Tagebuch</h1>
-    </div>
     <div id=list>
       <ol v-if="posts.length > 0">
         <li v-for="post in posts" :key="post.id">
@@ -14,12 +15,15 @@
         </li>
       </ol>
     </div>
-  </span>
+  </div>
 </template>
 
 <script>
 import firebase from '@firebase/app'
 import Raven from 'raven-js'
+
+import 'spinkit/css/spinners/3-wave.css'
+
 import { articlesCollection } from '~/firebase'
 
 import PostPreview from '~/components/PostPreview.vue'
@@ -27,7 +31,7 @@ import PostPreview from '~/components/PostPreview.vue'
 export default {
   data: () => ({
     posts: [],
-    onInitializing: false
+    onInitializing: true
   }),
   async beforeMount() {
     await this.$bind('posts', articlesCollection().orderBy('updated_at', 'desc'))
@@ -40,23 +44,22 @@ export default {
 </script>
 
 <style scoped>
-* {
-  box-sizing: border-box;
+.init {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
-#index {
-  display: flex;
-}
-#sidebar {
-  max-width: 165px;
+/* disable lit */
+.init * {
+  margin: 0;
+  box-sizing: content-box;
 }
 
 ol {
-  padding: 0;
-}
-li {
-  list-style-type: none;
-}
-p {
-  color: red;
+  list-style: none;
 }
 </style>
+
