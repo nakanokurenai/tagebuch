@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  test:
+  test: &test
     docker:
-      - image: circleci/node:6.14.0
+      - image: circleci/node:8.11.3
 
     working_directory: ~/repo
 
@@ -25,9 +25,7 @@ jobs:
           paths:
             - repo
   deploy:
-    docker:
-      - image: circleci/node:6.14.0
-    working_directory: ~/repo
+    <<: *test
     steps:
       - attach_workspace:
           at: ~/
