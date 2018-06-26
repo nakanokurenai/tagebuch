@@ -10,7 +10,7 @@
     <form id="form">
       <div id=bodyarea>
         <textarea id="body-textarea" v-model="body" placeholder="body"></textarea>
-        <div class="c preview" v-html="renderedBody"></div>
+        <post class="c preview" :post="{body}" />
       </div>
       <input type=button class="btn primary" @click="publish($event)" value="Publish it!">
     </form>
@@ -79,6 +79,7 @@ import Raven from 'raven-js'
 import uuidv4 from 'uuid/v4'
 import marked from 'marked'
 
+import Post from '~/components/Post.vue'
 import Loading from '~/components/Loading.vue'
 
 export default {
@@ -174,7 +175,8 @@ export default {
     }
   },
   components: {
-    Loading
+    Loading,
+    Post
   }
 }
 </script>
