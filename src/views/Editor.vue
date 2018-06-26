@@ -110,6 +110,7 @@ export default {
         Raven.setUserContext({})
         this.user = null
         this.isPreviledgedUser = false
+        this.onInitializing = false
         return
       }
 
@@ -125,6 +126,7 @@ export default {
         email: user.email,
         uid: user.uid
       })
+      this.onInitializing = false
     })
 
     const credential = window.localStorage.getItem('credential')
@@ -144,8 +146,6 @@ export default {
         window.localStorage.removeItem('credential')
       }
     }
-
-    this.onInitializing = false
   },
   methods: {
     publish: async function (event) {

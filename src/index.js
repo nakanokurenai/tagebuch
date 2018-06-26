@@ -7,7 +7,6 @@ import firebase from '~/firebase'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueAsyncComputed from 'vue-async-computed'
-import VueFire from 'vuefire'
 
 import '@ajusa/lit/dist/lit.css'
 import '~/index.css'
@@ -33,7 +32,6 @@ async function index () {
   const { data: firebaseAppConfig } = await axios.get('/__/firebase/init.json')
   firebase.initializeApp(firebaseAppConfig)
 
-  Vue.use(VueFire)
   Vue.use(VueAsyncComputed)
   Vue.use(VueRouter)
 

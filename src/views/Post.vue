@@ -1,5 +1,6 @@
 <template>
   <div v-if="post" class="c fadein">
+    <header-component />
     <post :post="post" />
   </div>
   <not-found v-else-if="isThereNoPost" />
@@ -12,6 +13,7 @@ import { articlesCollection } from '~/firebase'
 
 import Post from '~/components/Post.vue'
 import Loading from '~/components/Loading.vue'
+import HeaderComponent from '~/components/Header.vue'
 import NotFound from '~/views/NotFound.vue'
 
 export default {
@@ -35,7 +37,8 @@ export default {
   components: {
     Post,
     NotFound,
-    Loading
+    Loading,
+    HeaderComponent
   }
 }
 </script>

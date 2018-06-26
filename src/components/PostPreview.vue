@@ -2,14 +2,14 @@
   <article>
     <router-link :to="'/posts/' + post.id">
       <h2>
-        {{post.title}}
+        {{post.title || post.id}}
       </h2>
-      <footer class="information">
-        <p class="right">
-          {{createdAt}}
-        </p>
-      </footer>
     </router-link>
+    <footer class="information">
+      <p>
+        {{createdAt}}
+      </p>
+    </footer>
   </article>
 </template>
 
@@ -31,9 +31,5 @@ export default {
 
   .information {
     width: 100%;
-  }
-
-  .right {
-    text-align: right;
   }
 </style>

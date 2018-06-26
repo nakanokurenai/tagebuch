@@ -1,7 +1,7 @@
 <template>
   <loading v-if="onInitializing" />
   <div class="c fadein" v-else>
-    <h1>Das Tagebuch</h1>
+    <header-component />
     <div id=list v-if="posts.length > 0">
       <ol v-if="posts.length > 0">
         <li>
@@ -18,6 +18,7 @@ import { articlesCollection } from '~/firebase'
 
 import PostPreview from '~/components/PostPreview.vue'
 import Loading from '~/components/Loading.vue'
+import HeaderComponent from '~/components/Header.vue'
 
 export default {
   data: () => ({
@@ -25,12 +26,13 @@ export default {
     onInitializing: true
   }),
   async beforeMount () {
-    await this.$bind('posts', articlesCollection().orderBy('updated_at', 'desc'))
+    this.posts = (await articlesCollection().orderBy('updated_at', 'desc').get()).docs.map(v => ({id: v.id, ...v.data()}))
     this.onInitializing = false
   },
   components: {
     PostPreview,
-    Loading
+    Loading,
+    HeaderComponent
   }
 }
 </script>
