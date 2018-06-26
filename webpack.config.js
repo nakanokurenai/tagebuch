@@ -5,16 +5,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin")
 
 module.exports = (_, argv) => ({
-  entry: Object.assign(
-    {
-      bundle: ['./src/index.js']
-    },
-    argv.mode === 'production'
-      ? {
-        polyfill: ['babel-polyfill'],
-      }
-      : {}
-  ),
+  entry: {
+    bundle: ['./src/index.js']
+  },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
@@ -42,20 +35,7 @@ module.exports = (_, argv) => ({
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
-        use: [...(
-          argv.mode === 'production'
-            ? [{
-              loader: 'babel-loader',
-              options: {
-                presets: ['@babel/preset-env'],
-                plugins: [
-                  '@babel/plugin-syntax-dynamic-import'
-                ]
-              }
-            }]
-            : []
-        )]
+        exclude: /(node_modules)/
       }
     ]
   },
