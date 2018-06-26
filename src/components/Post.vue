@@ -15,3 +15,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+article:first-child {
+  margin-top: 0;
+}
+</style>
