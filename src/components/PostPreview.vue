@@ -23,10 +23,6 @@
     margin: 0;
   }
 
-  a {
-    color: mediumpurple;
-  }
-
   .id {
     text-align: right;
   }

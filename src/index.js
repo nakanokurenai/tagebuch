@@ -13,6 +13,7 @@ import VueAsyncComputed from 'vue-async-computed'
 import VueFire from 'vuefire'
 
 import '@ajusa/lit/dist/lit.css'
+import '~/index.css'
 
 import config from './config'
 import App from '~/App.vue'
