@@ -1,8 +1,6 @@
 <template>
-  <section>
-    <h1>{{post.title}}</h1>
-    <p v-html="renderedBody"></p>
-  </section>
+  <article v-html="renderedBody">
+  </article>
 </template>
 
 <script>
@@ -17,9 +15,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-p >>> img {
-  max-width: 100%
-}
-</style>

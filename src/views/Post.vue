@@ -1,9 +1,9 @@
 <template>
-  <span v-if="!post && !isThereNoPost">
-    <p>Loading...</p>
-  </span>
-  <not-found v-else-if="isThereNoPost"></not-found>
-  <post v-else :post="post"></post>
+  <div v-if="post" class="c">
+    <post :post="post" />
+  </div>
+  <not-found v-else-if="isThereNoPost" />
+  <loading v-else/>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ import Raven from 'raven-js'
 import { articlesCollection } from '~/firebase'
 
 import Post from '~/components/Post.vue'
+import Loading from '~/components/Loading.vue'
 import NotFound from '~/views/NotFound.vue'
 
 export default {
@@ -20,7 +21,7 @@ export default {
   }),
   async beforeMount () {
     try {
-      const doc = await articlesCollection().doc(this.$route.params.id).get()
+      const doc = await (await articlesCollection()).doc(this.$route.params.id).get()
       if (!doc.exists) {
         this.isThereNoPost = true
         return
@@ -33,7 +34,8 @@ export default {
   },
   components: {
     Post,
-    NotFound
+    NotFound,
+    Loading
   }
 }
 </script>

@@ -2,10 +2,7 @@ import Raven from 'raven-js'
 import RavenVuePlugin from 'raven-js/plugins/vue'
 
 import axios from 'axios'
-import firebase from '@firebase/app'
-import '@firebase/auth'
-import '@firebase/firestore'
-import '@firebase/storage'
+import firebase from '~/firebase'
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -19,9 +16,10 @@ import config from './config'
 import App from '~/App.vue'
 
 import NotFound from '~/views/NotFound.vue'
-const Index = () => import('~/views/Index.vue')
+import Index from '~/views/Index.vue'
+import Post from '~/views/Post.vue'
+
 const Editor = () => import('~/views/Editor.vue')
-const Post = () => import('~/views/Post.vue')
 
 Raven
   .config(config.SENTRY_DSN)

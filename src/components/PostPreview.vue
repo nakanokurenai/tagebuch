@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <article>
     <router-link :to="'/posts/' + post.id">
       <h2>
         {{post.title}}
@@ -9,7 +9,7 @@
       </p>
     </router-link>
     <p>{{post.summary || post.body.split('/n')[0].substr(0, 100)}}</p>
-  </section>
+  </article>
 </template>
 
 <script>

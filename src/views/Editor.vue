@@ -1,9 +1,6 @@
 <template>
-  <span v-if="onInitializing">
-    <h1>Editor</h1>
-    <p >Loading...</p>
-  </span>
-  <span v-else>
+  <loading v-if="onInitializing" />
+  <div class="c" v-else>
     <span v-if="isPreviledgedUser">
       <form id="form">
         <input type=text id=title v-model="title" placeholder="title">
@@ -21,7 +18,7 @@
       You must be a previledged user if you want to edit.
       <input type=button @click="signin()" value="Sign in">
     </p>
-  </span>
+  </div>
 </template>
 
 <style>
@@ -58,11 +55,14 @@ html, body, #form {
 </style>
 
 <script>
-import firebase from '@firebase/app'
+import firebase from '~/firebase'
+import '@firebase/auth'
 import { articlesCollection, systemCollection } from '~/firebase'
 import Raven from 'raven-js'
 import uuidv4 from 'uuid/v4'
 import marked from 'marked'
+
+import Loading from '~/components/Loading.vue'
 
 export default {
   components: {},
@@ -155,6 +155,9 @@ export default {
         })
         .catch(Raven.captureException.bind(Raven))
     }
+  },
+  components: {
+    Loading
   }
 }
 </script>

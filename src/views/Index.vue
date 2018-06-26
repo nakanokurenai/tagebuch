@@ -1,11 +1,11 @@
 <template>
-  <Loading v-if="onInitializing" />
+  <loading v-if="onInitializing" />
   <div class="c" v-else>
     <h1>Das Tagebuch</h1>
     <div id=list>
       <ol v-if="posts.length > 0">
-        <li v-for="post in posts" :key="post.id">
-          <post-preview :post="post"></post-preview>
+        <li>
+          <post-preview :post="post" v-for="post in posts" :key="post.id"></post-preview>
         </li>
       </ol>
     </div>
