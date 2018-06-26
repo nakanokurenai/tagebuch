@@ -1,15 +1,14 @@
 <template>
   <div v-if="post" class="c fadein">
     <header-component />
-    <post :post="post" />
+    <post class="post" :post="post" />
   </div>
   <not-found v-else-if="isThereNoPost" />
   <loading v-else/>
 </template>
 
 <style scoped>
-/* FIXME */
-.c >>> article :first-child { /* post */
+.post :first-child {
   margin-top: 0;
 }
 </style>
