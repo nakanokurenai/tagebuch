@@ -8,6 +8,7 @@
 </template>
 
 <style scoped>
+/* FIXME */
 .c >>> article :first-child { /* post */
   margin-top: 0;
 }
