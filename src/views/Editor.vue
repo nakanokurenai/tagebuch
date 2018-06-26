@@ -1,33 +1,41 @@
 <template>
   <loading v-if="onInitializing" />
-  <div class="c" v-else>
-    <span v-if="isPreviledgedUser">
-      <form id="form">
-        <input type=text id=title v-model="title" placeholder="title">
-        <input type=text id=summary v-model="summary" placeholder="summary">
-        <div id=bodyarea>
-          <textarea id="body-textarea" v-model="body" placeholder="body"></textarea>
-          <div v-html="renderedBody"></div>
-        </div>
-        <input type=button @click="publish($event)" value="Publish it!">
-      </form>
-      <div id="editor">
-      </div>
-    </span>
-    <p v-else>
+  <div class="c root" v-else-if="!isPreviledgedUser">
+    <p>
       You must be a previledged user if you want to edit.
       <input type=button @click="signin()" value="Sign in">
     </p>
   </div>
+  <div class="c root" v-else>
+    <form id="form">
+      <div id=bodyarea>
+        <textarea id="body-textarea" v-model="body" placeholder="body"></textarea>
+        <div class="c preview" v-html="renderedBody"></div>
+      </div>
+      <input type=button class="btn primary" @click="publish($event)" value="Publish it!">
+    </form>
+  </div>
 </template>
 
 <style>
-html, body, #form {
+html, body {
   height: 100%;
+  margin: 0;
+}
+</style>
+
+<style scoped>
+.root {
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  max-width: 100%;
 }
 
 #form {
-  display : inline-flex;
+  flex: 1;
+  display : flex;
   flex-flow: column;
   width: 100%;
 }
@@ -40,9 +48,19 @@ html, body, #form {
 
 #bodyarea > * {
   flex-grow: 1;
-  min-width: 50%;
+  max-width: 50%;
   word-wrap: break-word;
   overflow: scroll;
+  font: 1em/1.6 nunito;
+  box-sizing: border-box;
+}
+
+#bodyarea > textarea {
+  padding: 1em; /* same padding by lit */
+}
+
+.preview {
+  margin: 0;
 }
 
 #textarea {
@@ -80,7 +98,8 @@ export default {
     },
     renderedBody: function () {
       return marked(this.body, {
-        sanitize: true
+        gfm: true,
+        breaks: true
       })
     }
   },
