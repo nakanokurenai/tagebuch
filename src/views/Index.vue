@@ -40,5 +40,6 @@ export default {
 <style scoped>
 ol {
   list-style: none;
+  padding: 0;
 }
 </style>

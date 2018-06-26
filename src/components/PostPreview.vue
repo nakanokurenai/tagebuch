@@ -1,10 +1,13 @@
 <template>
   <section>
-    <h1>
-      <router-link :to="'/posts/' + post.id">
+    <router-link :to="'/posts/' + post.id">
+      <h2>
         {{post.title}}
-      </router-link>
-    </h1>
+      </h2>
+      <p class="id">
+        /posts/{{post.id}}
+      </p>
+    </router-link>
     <p>{{post.summary || post.body.split('/n')[0].substr(0, 100)}}</p>
   </section>
 </template>
@@ -14,3 +17,17 @@
     props: ['post']
   }
 </script>
+
+<style scoped>
+  h2 {
+    margin: 0;
+  }
+
+  a {
+    color: mediumpurple;
+  }
+
+  .id {
+    text-align: right;
+  }
+</style>
