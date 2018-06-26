@@ -56,6 +56,7 @@ html, body, #form {
 
 <script>
 import { default as firebase, articlesCollection, systemCollection } from '~/firebase'
+import '@firebase/auth'
 import Raven from 'raven-js'
 import uuidv4 from 'uuid/v4'
 import marked from 'marked'
