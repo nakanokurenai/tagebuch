@@ -55,9 +55,7 @@ html, body, #form {
 </style>
 
 <script>
-import firebase from '~/firebase'
-import '@firebase/auth'
-import { articlesCollection, systemCollection } from '~/firebase'
+import { default as firebase, articlesCollection, systemCollection } from '~/firebase'
 import Raven from 'raven-js'
 import uuidv4 from 'uuid/v4'
 import marked from 'marked'
@@ -65,7 +63,6 @@ import marked from 'marked'
 import Loading from '~/components/Loading.vue'
 
 export default {
-  components: {},
   data: () => ({
     isPreviledgedUser: false,
     onInitializing: true,
