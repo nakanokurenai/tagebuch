@@ -1,5 +1,5 @@
 <template>
-  <div v-if="post" class="c">
+  <div v-if="post" class="c fadein">
     <post :post="post" />
   </div>
   <not-found v-else-if="isThereNoPost" />

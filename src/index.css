@@ -1,3 +1,17 @@
 a {
   color: mediumpurple;
 }
+
+.fadein {
+  animation-name: fadein;
+  animation-duration: 0.3s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}

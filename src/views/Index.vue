@@ -1,6 +1,6 @@
 <template>
   <loading v-if="onInitializing" />
-  <div class="c" v-else>
+  <div class="c fadein" v-else>
     <h1>Das Tagebuch</h1>
     <div id=list>
       <ol v-if="posts.length > 0">
