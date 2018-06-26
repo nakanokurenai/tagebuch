@@ -4,17 +4,23 @@
       <h2>
         {{post.title}}
       </h2>
-      <p class="id">
-        /posts/{{post.id}}
-      </p>
+      <footer class="information">
+        <p class="right">
+          {{createdAt}}
+        </p>
+      </footer>
     </router-link>
-    <p>{{post.summary || post.body.split('/n')[0].substr(0, 100)}}</p>
   </article>
 </template>
 
 <script>
 export default {
-  props: ['post']
+  props: ['post'],
+  computed: {
+    createdAt () {
+      return new Date(this.post.created_at).toString()
+    }
+  }
 }
 </script>
 
@@ -23,7 +29,11 @@ export default {
     margin: 0;
   }
 
-  .id {
+  .information {
+    width: 100%;
+  }
+
+  .right {
     text-align: right;
   }
 </style>

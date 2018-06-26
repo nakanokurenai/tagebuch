@@ -21,7 +21,7 @@ export default {
   }),
   async beforeMount () {
     try {
-      const doc = await (await articlesCollection()).doc(this.$route.params.id).get()
+      const doc = await articlesCollection().doc(this.$route.params.id).get()
       if (!doc.exists) {
         this.isThereNoPost = true
         return
