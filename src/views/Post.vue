@@ -7,6 +7,12 @@
   <loading v-else/>
 </template>
 
+<style scoped>
+.c >>> article :first-child { /* post */
+  margin-top: 0;
+}
+</style>
+
 <script>
 import Raven from 'raven-js'
 import { articlesCollection } from '~/firebase'
