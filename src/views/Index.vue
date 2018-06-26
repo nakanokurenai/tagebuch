@@ -2,13 +2,14 @@
   <loading v-if="onInitializing" />
   <div class="c fadein" v-else>
     <h1>Das Tagebuch</h1>
-    <div id=list>
+    <div id=list v-if="posts.length > 0">
       <ol v-if="posts.length > 0">
         <li>
           <post-preview :post="post" v-for="post in posts" :key="post.id"></post-preview>
         </li>
       </ol>
     </div>
+    <h3 v-else>There are no articles</h3>
   </div>
 </template>
 
