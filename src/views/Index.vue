@@ -13,9 +13,6 @@
 </template>
 
 <script>
-import firebase from '@firebase/app'
-import Raven from 'raven-js'
-
 import { articlesCollection } from '~/firebase'
 
 import PostPreview from '~/components/PostPreview.vue'
@@ -26,7 +23,7 @@ export default {
     posts: [],
     onInitializing: true
   }),
-  async beforeMount() {
+  async beforeMount () {
     await this.$bind('posts', articlesCollection().orderBy('updated_at', 'desc'))
     this.onInitializing = false
   },

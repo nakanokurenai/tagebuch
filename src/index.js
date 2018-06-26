@@ -32,7 +32,7 @@ Raven
   .install()
 
 async function index () {
-  const {data: firebaseAppConfig} = await axios.get('/__/firebase/init.json')
+  const { data: firebaseAppConfig } = await axios.get('/__/firebase/init.json')
   firebase.initializeApp(firebaseAppConfig)
 
   Vue.use(VueFire)

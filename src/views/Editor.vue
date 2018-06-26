@@ -139,8 +139,8 @@ export default {
           title: this.title,
           body: this.body,
           summary: this.summary,
-          created_at: new Date(),
-          updated_at: new Date()
+          created_at: new Date(), // eslint-disable-line camelcase
+          updated_at: new Date() // eslint-disable-line camelcase
         })
       this.title = this.body = this.summary = ''
     },

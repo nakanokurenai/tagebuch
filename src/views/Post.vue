@@ -18,7 +18,7 @@ export default {
     post: null,
     isThereNoPost: false
   }),
-  async beforeMount() {
+  async beforeMount () {
     try {
       const doc = await articlesCollection().doc(this.$route.params.id).get()
       if (!doc.exists) {
@@ -29,7 +29,6 @@ export default {
     } catch (e) {
       Raven.captureException(e)
       this.isThereNoPost = true
-      return
     }
   },
   components: {

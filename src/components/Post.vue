@@ -6,16 +6,16 @@
 </template>
 
 <script>
-  import marked from 'marked'
+import marked from 'marked'
 
-  export default {
-    props: ['post'],
-    computed: {
-      renderedBody: function () {
-        return marked(this.post.body)
-      }
+export default {
+  props: ['post'],
+  computed: {
+    renderedBody: function () {
+      return marked(this.post.body)
     }
   }
+}
 </script>
 
 <style scoped>

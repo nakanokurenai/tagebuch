@@ -5,7 +5,7 @@
     "build": "npm run --silent clean && env `cat .env` webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
     "deploy": "./deploy.sh",
-    "lint": "eslint 'src/*.{js,vue}'",
+    "lint": "eslint 'src/**/*.{js,vue}'",
     "fmt": "npm run --silent lint -- --fix",
     "dev": "env `cat .env` webpack-dev-server --mode development",
     "setup": "rm -rf node_modules functions/node_modules && yarn && yarn --cwd functions",
