@@ -66,5 +66,17 @@ module.exports = (_, argv) => ({
       }
     },
     historyApiFallback: true
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: new RegExp('/node_modules/@firebase'),
+          name: "firebase",
+          chunks: "initial",
+          priority: 10
+        }
+      }
+    }
   }
 })
