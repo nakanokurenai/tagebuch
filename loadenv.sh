@@ -1,7 +1,8 @@
 #!/bin/bash
 
 loadenv () {
-  for i in `cat $1`
+  local IFS=$'\n'
+  for i in `cat "$1"`
   do
     export $i
   done

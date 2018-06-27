@@ -2,12 +2,12 @@
   "name": "tagebuch",
   "scripts": {
     "start": "node static.js",
-    "build": "npm run --silent clean && env -S \"$(cat .env)\" webpack --mode production",
+    "build": "npm run --silent clean && source ./loadenv.sh && webpack --mode production",
     "clean": "find dist/* -not -name 'index.html' -not -name '.gitignore' | xargs rm -rf",
     "deploy": "./deploy.sh",
     "lint": "eslint 'src/**/*.{js,vue}'",
     "fmt": "npm run --silent lint -- --fix",
-    "dev": "env -S \"$(cat .env)\" webpack-dev-server --mode development",
+    "dev": "source ./loadenv.sh && webpack-dev-server --mode development",
     "setup": "rm -rf node_modules functions/node_modules && yarn && yarn --cwd functions",
     "heroku-postbuild": ".heroku/setup.sh"
   },
