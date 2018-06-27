@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import config from '~/config'
+
 export default {
   props: ['title', 'path'],
   computed: {
@@ -14,7 +16,7 @@ export default {
       return this.path || '/'
     },
     h1 () {
-      return this.title || 'Das Tagebuch'
+      return this.title || config.TITLE
     }
   }
 }

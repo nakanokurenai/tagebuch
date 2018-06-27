@@ -46,7 +46,8 @@ module.exports = (_, argv) => ({
     }),
     new webpack.DefinePlugin({
       'process.env': JSON.stringify({
-        SENTRY_DSN: process.env.SENTRY_DSN
+        SENTRY_DSN: process.env.SENTRY_DSN,
+        TAGEBUCH_TITLE: process.env.TAGEBUCH_TITLE
       })
     }),
     // plugins that enabled on production mode
