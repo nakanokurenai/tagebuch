@@ -57,6 +57,7 @@ html, body {
 
 #bodyarea > textarea {
   padding: 1em; /* same padding by lit */
+  resize: none;
 }
 
 .preview {
