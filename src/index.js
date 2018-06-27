@@ -29,6 +29,8 @@ Raven
   .install()
 
 async function index () {
+  document.title = config.TITLE
+
   const { data: firebaseAppConfig } = await axios.get('/__/firebase/init.json')
   firebase.initializeApp(firebaseAppConfig)
 
