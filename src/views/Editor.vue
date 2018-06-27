@@ -43,7 +43,7 @@ html, body {
 #bodyarea {
   display: flex;
   flex-flow: row;
-  flex: 1 auto;
+  flex: auto;
 }
 
 #bodyarea > * {
@@ -78,7 +78,6 @@ import { default as firebase, articlesCollection, systemCollection } from '~/fir
 import '@firebase/auth'
 import Raven from 'raven-js'
 import uuidv4 from 'uuid/v4'
-import marked from 'marked'
 
 import Post from '~/components/Post.vue'
 import Loading from '~/components/Loading.vue'
@@ -89,22 +88,8 @@ export default {
     onInitializing: true,
     title: '',
     summary: '',
-    body: '',
-    user: null
+    body: ''
   }),
-  computed: {
-    currentUser: function () {
-      return this.user !== null
-        ? this.user.displayName || this.user.email || this.user.uid
-        : null
-    },
-    renderedBody: function () {
-      return marked(this.body, {
-        gfm: true,
-        breaks: true
-      })
-    }
-  },
   async beforeMount () {
     Raven.setUserContext({})
     firebase.auth().onAuthStateChanged(async user => {
@@ -116,18 +101,17 @@ export default {
         return
       }
 
-      this.user = user
+      Raven.setUserContext({
+        email: user.email,
+        uid: user.uid
+      })
 
       try {
         await systemCollection().limit(1).get()
         this.isPreviledgedUser = true
       } catch (e) {
-        console.error(e)
+        Raven.captureException(e)
       }
-      Raven.setUserContext({
-        email: user.email,
-        uid: user.uid
-      })
       this.onInitializing = false
     })
 

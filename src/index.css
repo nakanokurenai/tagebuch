@@ -20,3 +20,9 @@ img {
     opacity: 1;
   }
 }
+
+hr {
+  margin: auto;
+  border: solid 0.05em mediumpurple;
+  width: 30em;
+}

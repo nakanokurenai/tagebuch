@@ -1,5 +1,5 @@
 <template>
-  <article v-html="renderedBody">
+  <article v-html="body">
   </article>
 </template>
 
@@ -9,9 +9,18 @@ import marked from 'marked'
 export default {
   props: ['post'],
   computed: {
-    renderedBody: function () {
-      return marked(this.post.body)
+    body: function () {
+      return marked(this.post.body, {
+        gfm: true,
+        breaks: true
+      })
     }
   }
 }
 </script>
+
+<style scoped>
+article >>> table {
+  width: 100%;
+}
+</style>
