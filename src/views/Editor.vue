@@ -8,7 +8,7 @@
   </div>
   <div class="c root" v-else>
     <form id="form">
-      <div id=bodyarea>
+      <div id=bodyarea ref=preview>
         <textarea id="body-textarea" v-model="body" placeholder="body"></textarea>
         <post class="c preview" :post="{body}" />
       </div>
@@ -86,8 +86,6 @@ export default {
   data: () => ({
     isPreviledgedUser: false,
     onInitializing: true,
-    title: '',
-    summary: '',
     body: ''
   }),
   async beforeMount () {
@@ -136,12 +134,26 @@ export default {
   methods: {
     publish: async function (event) {
       if (event) event.preventDefault()
+
+      const title = (() => {
+        const elements = this.$refs.preview.getElementsByTagName('h1')
+        return elements.length > 0 ? elements[0].innerText : null
+      })()
+      const summary = (() => {
+        const elements = this.$refs.preview.getElementsByTagName('p')
+        return elements.length > 0 ? (
+          elements[0].innerText.length > 100
+            ? elements[0].innerText.substr(0, 100) + '……'
+            : elements[0].innerText
+        ) : null
+      })()
+
       await articlesCollection()
         .doc(uuidv4())
         .set({
-          title: this.title,
+          title: title,
           body: this.body,
-          summary: this.summary,
+          summary: summary,
           created_at: new Date(), // eslint-disable-line camelcase
           updated_at: new Date() // eslint-disable-line camelcase
         })
