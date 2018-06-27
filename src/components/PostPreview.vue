@@ -2,7 +2,7 @@
   <article>
     <router-link :to="'/posts/' + post.id">
       <h2>
-        {{post.title || post.id}}
+        {{post.title || 'No title'}}
       </h2>
     </router-link>
     <footer class="information">
