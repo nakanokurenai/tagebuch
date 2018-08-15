@@ -1,4 +1,4 @@
-tegebuch
+tagebuch
 ===
 
 Requirements
