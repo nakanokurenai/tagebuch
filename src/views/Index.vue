@@ -16,7 +16,7 @@
 <script>
 import { articlesCollection } from '~/firebase'
 
-import { firestore } from '@firebase/app'
+import { firestore } from 'firebase'
 
 import PostPreview from '~/components/PostPreview.vue'
 import Loading from '~/components/Loading.vue'
