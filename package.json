@@ -25,8 +25,8 @@
     "firebase-tools": "^3.18.4",
     "vue-template-compiler": "^2.5.16",
     "webpack": "^4.20.2",
-    "webpack-dev-server": "^3.1.4",
-    "webpack-cli": "^3.1.1"
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
     "@ajusa/lit": "^1.1.0",
@@ -38,6 +38,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "firebase": "^5.7.0",
+    "http-proxy-middleware": "^0.19.1",
     "marked": "^0.4.0",
     "mini-css-extract-plugin": "^0.4.0",
     "monaco-editor": "^0.13.1",
