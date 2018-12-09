@@ -6,3 +6,4 @@ node_modules
 # to use yarn
 package-lock.json
 npm-shrinkwrap.json
+yarn-error.log
