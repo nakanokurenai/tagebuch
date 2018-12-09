@@ -26,7 +26,7 @@ export default {
     onInitializing: true
   }),
   async beforeMount () {
-    this.posts = (await articlesCollection().where('published_at', '<', new Date())).orderBy('published_at', 'desc').get()).docs.map(v => ({id: v.id, ...v.data()}))
+    this.posts = (await articlesCollection().where('published_at', '<', new Date()).orderBy('published_at', 'desc').get()).docs.map(v => ({id: v.id, ...v.data()}))
     this.onInitializing = false
   },
   components: {
