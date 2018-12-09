@@ -16,8 +16,6 @@
 <script>
 import { articlesCollection } from '~/firebase'
 
-import firebase from '@firebase/app'
-
 import PostPreview from '~/components/PostPreview.vue'
 import Loading from '~/components/Loading.vue'
 import HeaderComponent from '~/components/Header.vue'
@@ -28,7 +26,7 @@ export default {
     onInitializing: true
   }),
   async beforeMount () {
-    this.posts = (await articlesCollection().where('published_at', '<', firebase.firestore.FieldValue.serverTimestamp()).orderBy('published_at', 'desc').get()).docs.map(v => ({id: v.id, ...v.data()}))
+    this.posts = (await articlesCollection().where('published_at', '<', new Date())).orderBy('published_at', 'desc').get()).docs.map(v => ({id: v.id, ...v.data()}))
     this.onInitializing = false
   },
   components: {
