@@ -32,7 +32,7 @@
     "@ajusa/lit": "1.1.0",
     "@firebase/app": "0.3.5",
     "@firebase/auth": "0.5.3",
-    "@firebase/firestore": "0.5.6",
+    "@firebase/firestore": "0.9.3",
     "@firebase/storage": "0.2.4",
     "axios": "0.18.0",
     "dotenv": "5.0.1",
