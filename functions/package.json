@@ -10,7 +10,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "firebase-admin": "5.12.1",
+    "firebase-admin": "6.5.1",
     "firebase-functions": "1.0.3"
   },
   "devDependencies": {
