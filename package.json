@@ -38,7 +38,7 @@
     "dotenv": "5.0.1",
     "express": "4.16.4",
     "http-proxy-middleware": "0.19.1",
-    "marked": "0.4.0",
+    "marked": "0.6.2",
     "mini-css-extract-plugin": "0.4.5",
     "monaco-editor": "0.13.1",
     "raven-js": "3.27.0",
