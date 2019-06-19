@@ -12,7 +12,7 @@
     "heroku-postbuild": ".heroku/setup.sh"
   },
   "devDependencies": {
-    "babel-eslint": "8.2.6",
+    "babel-eslint": "10.0.2",
     "css-loader": "0.28.11",
     "eslint": "4.19.1",
     "eslint-config-standard": "11.0.0",
